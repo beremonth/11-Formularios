@@ -8,7 +8,13 @@
             <label class="col-2 col-form-label">Nombre</label>
             <div class="col-8">
 
-                <input class="form-control" type="text" placeholder="Nombre" name="nombre" minlength="5" [(ngModel)]='usuario.nombre' required>
+                <input class="form-control" type="text" placeholder="Nombre" name="nombre" minlength="3" [(ngModel)]='usuario.nombre' #nombre="ngModel" required>
+                <div *ngIf="nombre.errors?.required" class="">
+                    El campo es querido
+                </div>
+                <div *ngIf="nombre.errors?.minlength" class="">
+                    Por lo menos {{ nombre.errors.minlength.requiredLength }} caracteres.
+                </div>
             </div>
         </div>
 

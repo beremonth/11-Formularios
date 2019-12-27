@@ -4,14 +4,19 @@ import { NgForm } from '@angular/forms'; // formulario de angular
 @Component({
   selector: 'app-template',
   templateUrl: './template.component.html',
-  styles: []
+  styles: [`
+    input.ng-invalid.ng-touched
+    {
+      border: 1px solid red;
+    }
+  `]
 })
 export class TemplateComponent implements OnInit {
   usuario: object =
   {
-      nombre: 'Joaquin',
-      apellido: 'Guzman',
-      correo: 'emoxito_chapito_666@hotmail.com'
+      nombre: '',
+      apellido: '',
+      correo: ''
   } // end object usuario
 
   constructor() { }

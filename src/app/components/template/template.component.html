@@ -1,6 +1,6 @@
 <h4>Formularios <small>template</small></h4>
 <hr>
-<form>
+<form (ngSubmit)="enviarDatos( formulario )" #formulario="ngForm">
 
     <div>
 
@@ -8,7 +8,7 @@
             <label class="col-2 col-form-label">Nombre</label>
             <div class="col-8">
 
-                <input class="form-control" type="text" placeholder="Nombre">
+                <input class="form-control" type="text" placeholder="Nombre" name="nombre" minlength="5" [(ngModel)]='usuario.nombre' required>
             </div>
         </div>
 
@@ -16,7 +16,7 @@
             <label class="col-2 col-form-label">Apellido</label>
             <div class="col-8">
 
-                <input class="form-control" type="text" placeholder="Apellido">
+                <input class="form-control" type="text" name="apellido" placeholder="Apellido" [(ngModel)]='usuario.apellido'>
             </div>
         </div>
 
@@ -26,7 +26,7 @@
         <label class="col-2 col-form-label">Correo</label>
         <div class="col-md-8">
 
-            <input class="form-control" type="email" placeholder="Correo electrónico">
+            <input class="form-control" type="email" name="correo" placeholder="Correo electrónico" [(ngModel)]="usuario.correo" required>
         </div>
     </div>
 

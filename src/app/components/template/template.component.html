@@ -8,12 +8,17 @@
             <label class="col-2 col-form-label">Nombre</label>
             <div class="col-8">
 
-                <input class="form-control" type="text" placeholder="Nombre" name="nombre" minlength="3" [(ngModel)]='usuario.nombre' #nombre="ngModel" required>
-                <div *ngIf="nombre.errors?.required" class="">
-                    El campo es querido
-                </div>
-                <div *ngIf="nombre.errors?.minlength" class="">
-                    Por lo menos {{ nombre.errors.minlength.requiredLength }} caracteres.
+                <input [ngClass]="{ 'is-invalid':(nombre.touched && (nombre.errors?.minlength || nombre.errors?.required)) }" class="form-control" type="text" placeholder="Nombre" name="nombre" minlength="3" [(ngModel)]='usuario.nombre' #nombre="ngModel" required>
+
+                <div *ngIf="nombre.touched && (nombre.errors?.required || nombre.errors?.minlength)" class="invalid-feedback">
+
+                    <div *ngIf="nombre.errors?.required">
+                        El campo es necesario
+                    </div>
+
+                    <div *ngIf="nombre.errors?.minlength">
+                        Por lo menos {{ nombre.errors.minlength.requiredLength }} caracteres.
+                    </div>
                 </div>
             </div>
         </div>
@@ -21,8 +26,14 @@
         <div class="form-group row">
             <label class="col-2 col-form-label">Apellido</label>
             <div class="col-8">
+                <input [ngClass]="{ 'is-invalid':  (apellido.touched && apellido.errors?.required) }" class="form-control" type="text" name="apellido" placeholder="Apellido" [(ngModel)]='usuario.apellido' #apellido="ngModel" required>
 
-                <input class="form-control" type="text" name="apellido" placeholder="Apellido" [(ngModel)]='usuario.apellido' required>
+                <div *ngIf="apellido.invalid && (apellido.touched || apellido.dirty)" class="invalid-feedback">
+
+                    <div *ngIf="apellido.errors?.required">
+                        El campo es necesario
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -31,8 +42,16 @@
     <div class="form-group row">
         <label class="col-2 col-form-label">Correo</label>
         <div class="col-md-8">
+            <input [ngClass]="{ 'is-invalid': correo.touched && (correo.errors?.required || correo.errors?.pattern) }" class="form-control" type="email" name="correo" placeholder="Correo electrónico" [(ngModel)]="usuario.correo" #correo="ngModel" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
 
-            <input class="form-control" type="email" name="correo" placeholder="Correo electrónico" [(ngModel)]="usuario.correo" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+            <div *ngIf="correo.invalid && (correo.touched || correo.dirty)" class="invalid-feedback">
+                <div *ngIf="correo.errors?.required">
+                    El campo es necesario
+                </div>
+                <div *ngIf="correo.errors?.pattern">
+                    El formato del correo no es valido
+                </div>
+            </div>
         </div>
     </div>
 
@@ -41,7 +60,7 @@
     <div class="form-group row">
         <label class="col-2 col-form-label">&nbsp;</label>
         <div class="input-group col-md-8">
-            <button type="submit" class="btn btn-outline-primary">
+            <button type="submit" class="btn btn-outline-primary" [disabled]="formulario.invalid">
         Guardar
       </button>
         </div>

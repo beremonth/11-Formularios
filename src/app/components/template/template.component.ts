@@ -41,7 +41,7 @@ export class TemplateComponent  {
 
   constructor() { }
 
-  enviarDatos( formulario: NgForm )
+  mostrarDatos( formulario: NgForm )
   {
     console.log("Propiedades ngForm", formulario);
     console.log("Valor formulario", formulario.value);

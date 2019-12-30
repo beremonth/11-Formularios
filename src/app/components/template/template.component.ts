@@ -16,9 +16,24 @@ export class TemplateComponent  {
   {
       nombre: '',
       apellido: '',
-      correo: ''
+      correo: '',
+      pais: ''
   } // end object usuario
 
+  arregloPais = [
+    {
+    codigo: 'CRI',
+    nombre: 'Costa Rica'
+    },
+    {
+      codigo: 'ESP',
+      nombre: 'España'
+    },
+    {
+      codigo: 'MX',
+      nombre: 'México'
+    }
+  ];
   constructor() { }
 
   enviarDatos( formulario: NgForm )

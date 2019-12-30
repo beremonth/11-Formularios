@@ -17,7 +17,9 @@ export class TemplateComponent  {
       nombre: '',
       apellido: '',
       correo: '',
-      pais: ''
+      pais: '',
+      sexo: '',
+      acepta: false
   } // end object usuario
 
   arregloPais = [
@@ -34,13 +36,16 @@ export class TemplateComponent  {
       nombre: 'México'
     }
   ];
+
+  sexos: string[] = ["Hombre", "Mujer", "Doble"];
+
   constructor() { }
 
   enviarDatos( formulario: NgForm )
   {
-    console.log("ngForm", formulario);
-    console.log("Valor", formulario.value);
+    console.log("Propiedades ngForm", formulario);
+    console.log("Valor formulario", formulario.value);
 
-    console.log("Usuario", this.usuario);
+    console.log("Valores usuario", this.usuario);
   } // end guardarDatos
 }

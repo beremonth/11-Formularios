@@ -8,7 +8,13 @@
             <label class="col-2 col-form-label">Nombre</label>
             <div class="col-8">
 
-                <input class="form-control" type="text" placeholder="Nombre" formControlName="nombre">
+                <input class="form-control" type="text" placeholder="Nombre" formControlName="nombre" [ngClass]=" {'is-invalid': miPrimerFormulario['controls'].nombre.touched && miPrimerFormulario['controls'].nombre.invalid} ">
+                <div class="invalid-feedback" *ngIf="miPrimerFormulario['controls'].nombre.errors?.required">
+                    El nombre es requerido
+                </div>
+                <div class="invalid-feedback" *ngIf="miPrimerFormulario['controls'].nombre.errors?.minlength">
+                    Al menos 3 caracteres
+                </div>
             </div>
         </div>
 
@@ -35,7 +41,8 @@
     <div class="form-group row">
         <label class="col-2 col-form-label">&nbsp;</label>
         <div class="input-group col-md-8">
-            <button type="submit" class="btn btn-outline-primary" [disabled]="miPrimerFormulario.invalid">
+            <!-- [disabled]="miPrimerFormulario.invalid" -->
+            <button type="submit" class="btn btn-outline-primary">
         Guardar
       </button>
         </div>

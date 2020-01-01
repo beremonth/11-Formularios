@@ -15,7 +15,7 @@ export class DataComponent implements OnInit {
     // parametros FormControl('valorCampo', 'validador', 'validadorAsincrono')
     this.miPrimerFormulario = new FormGroup
     ({
-      'nombre': new FormControl( 'Juan', Validators.required ),
+      'nombre': new FormControl( '', [Validators.required, Validators.minLength(3) ]),
       'apellido': new FormControl( '', Validators.required ),
       'correo': new FormControl('',
         [Validators.required,

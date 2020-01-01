@@ -7,15 +7,20 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styles: []
 })
 export class DataComponent implements OnInit {
-  formulario: FormGroup; // declaracion de variable de tipo FormGroup
+  miPrimerFormulario: FormGroup; // declaracion de variable de tipo FormGroup
+
   constructor()
   {
     // creacion de instancia de clase FormGroup
-    this.formulario = new FormGroup
+    // parametros FormControl('valorCampo', 'validador', 'validadorAsincrono')
+    this.miPrimerFormulario = new FormGroup
     ({
-      'nombre': new FormControl('Juan'),
-      'apellido': new FormControl(''),
-      'correo': new FormControl (''),
+      'nombre': new FormControl( 'Juan', Validators.required ),
+      'apellido': new FormControl( '', Validators.required ),
+      'correo': new FormControl('',
+        [Validators.required,
+        Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]
+      ),
     });
   }// end constructor
 
@@ -24,11 +29,11 @@ export class DataComponent implements OnInit {
 
   guardarCambios()
   { 
-    console.log("Propiedades del formulario: ");
-    console.log(this.formulario);
+    console.log("Datos en miPrimerFormulario");
+    console.log(this.miPrimerFormulario.value);
     
-    console.log("Datos en el formulario");
-    console.log( this.formulario.value );
+    console.log("Propiedades del formulario: ");
+    console.log(this.miPrimerFormulario);
   } // end guardarCambios
 
 }

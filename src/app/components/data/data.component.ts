@@ -39,6 +39,9 @@ export class DataComponent implements OnInit {
       ),
     });
 
+    // enlaza del objetoJS con formulario FormGroup ( miPrimerGrupoFormulario )
+    this.miPrimerGrupoFormulario.setValue( this.objetoFuenteDatos );
+
   }// end constructor
 
   ngOnInit()

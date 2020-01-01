@@ -7,33 +7,54 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styles: []
 })
 export class DataComponent implements OnInit {
-  miPrimerFormulario: FormGroup; // declaracion de variable de tipo FormGroup
+  miPrimerGrupoFormulario: FormGroup; // declaracion de variable de tipo FormGroup
+
+  objetoFuenteDatos: object =
+  {
+    nombreCompleto:
+    {
+      nombre: 'Juan',
+      apellido: 'Herrera'
+    },
+    correo: 'mary_sexy69_666@hotmail.com'
+  };
 
   constructor()
   {
     // creacion de instancia de clase FormGroup
     // parametros FormControl('valorCampo', 'validador', 'validadorAsincrono')
-    this.miPrimerFormulario = new FormGroup
+    this.miPrimerGrupoFormulario = new FormGroup
     ({
-      'nombre': new FormControl( '', [Validators.required, Validators.minLength(3) ]),
-      'apellido': new FormControl( '', Validators.required ),
-      'correo': new FormControl('',
+
+      'nombreCompleto': new FormGroup
+      ({
+        'nombre': new FormControl( '', [Validators.required, Validators.minLength(3) ]),
+        'apellido': new FormControl( '', Validators.required ),
+      }),
+
+      'correo': new FormControl
+      ('',
         [Validators.required,
         Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]
       ),
     });
+
   }// end constructor
 
-  ngOnInit() {
+  ngOnInit()
+  {
+
+    console.log('Contenido objetoJS');
+    console.log( this.objetoFuenteDatos );
   }
 
   guardarCambios()
   { 
-    console.log("Datos en miPrimerFormulario");
-    console.log(this.miPrimerFormulario.value);
+    console.log("Datos en miPrimerGrupoFormulario");
+    console.log(this.miPrimerGrupoFormulario.value);
     
     console.log("Propiedades del formulario: ");
-    console.log(this.miPrimerFormulario);
+    console.log(this.miPrimerGrupoFormulario);
   } // end guardarCambios
 
 }

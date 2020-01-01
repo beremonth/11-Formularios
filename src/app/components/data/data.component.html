@@ -1,18 +1,20 @@
 <h4>Formularios <small>logica datos (TS)</small></h4>
 <hr>
-<form [formGroup]="miPrimerFormulario" (ngSubmit)="guardarCambios()">
+<form [formGroup]="miPrimerGrupoFormulario" (ngSubmit)="guardarCambios()">
 
-    <div>
+    <!-- Estrucuta del div corresponde con estrucutura FormGroup en TS  -->
+    <div formGroupName="nombreCompleto">
 
         <div class="form-group row">
             <label class="col-2 col-form-label">Nombre</label>
             <div class="col-8">
 
-                <input class="form-control" type="text" placeholder="Nombre" formControlName="nombre" [ngClass]=" {'is-invalid': miPrimerFormulario['controls'].nombre.touched && miPrimerFormulario['controls'].nombre.invalid} ">
-                <div class="invalid-feedback" *ngIf="miPrimerFormulario['controls'].nombre.errors?.required">
+                <input class="form-control" type="text" placeholder="Nombre" formControlName="nombre" [ngClass]=" {'is-invalid': miPrimerGrupoFormulario.get( 'nombreCompleto.nombre' ).touched && miPrimerGrupoFormulario.get( 'nombreCompleto.nombre' ).invalid} ">
+                <div class="invalid-feedback" *ngIf="miPrimerGrupoFormulario.get( 'nombreCompleto.nombre' ).errors?.required">
+
                     El nombre es requerido
                 </div>
-                <div class="invalid-feedback" *ngIf="miPrimerFormulario['controls'].nombre.errors?.minlength">
+                <div class="invalid-feedback" *ngIf="miPrimerGrupoFormulario.get( 'nombreCompleto.nombre').errors?.minlength">
                     Al menos 3 caracteres
                 </div>
             </div>
@@ -41,13 +43,13 @@
     <div class="form-group row">
         <label class="col-2 col-form-label">&nbsp;</label>
         <div class="input-group col-md-8">
-            <!-- [disabled]="miPrimerFormulario.invalid" -->
+            <!-- [disabled]="miPrimerGrupoFormulario.invalid" -->
             <button type="submit" class="btn btn-outline-primary">
         Guardar
       </button>
         </div>
     </div>
 
-    {{ miPrimerFormulario.valid }}
+    {{ miPrimerGrupoFormulario.valid }}
 
 </form>

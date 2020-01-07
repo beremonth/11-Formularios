@@ -38,13 +38,26 @@
         </div>
     </div>
 
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Pasa tiempos</label>
+        <div class="col-8" formArrayName="pasatiempo">
+            <input type="text" class="form-control" [formControlName]="i" *ngFor=" let pasatiempo of miPrimerGrupoFormulario.controls['pasatiempo'].controls; let i=index">
+
+
+        </div>
+        <button type="button" class="btn btn-success" (click)="agregarPasatiempo()">
+            Nuevo
+        </button>
+
+    </div>
+
 
 
     <div class="form-group row">
         <label class="col-2 col-form-label">&nbsp;</label>
         <div class="input-group col-md-8">
             <!-- [disabled]="miPrimerGrupoFormulario.invalid" -->
-            <button type="submit" class="btn btn-outline-primary">
+            <button type="submit" class="btn" [ngClass]="miPrimerGrupoFormulario.invalid ? 'btn-secondary disabled' : 'btn-primary'">
         Guardar
       </button>
         </div>

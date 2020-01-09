@@ -1,5 +1,19 @@
+// Nombre archivo: data.component.ts
+// Proposito: Logica por datos para controlar comportamiento miPrimerGrupoFormulario
+// Autor: Stephen Arzeta
+// Fecha: 09/01/2020
+// Hora: 8:05 a.m.
+
+// Ultima modificación: 09/01/2020 08:05 am
+// Descripción: Agregar este encabezado al archivo
+
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
+import { FormControl } from '@angular/forms';
+import { FormArray } from '@angular/forms';
+import { Validators } from '@angular/forms';
+import { MiValidadorPersonalizado } from '../validators/miValidadorPersonalizado.validators';
+
 
 @Component({
   selector: 'app-data',
@@ -22,17 +36,18 @@ export class DataComponent implements OnInit
     // pasatiempo: ['dormir', 'comer', 'leer']
   };
 
-  constructor()
+  constructor( miValidador: MiValidadorPersonalizado )
   {
     // creacion de instancia de clase FormGroup
-    // parametros FormControl('valorCampo', 'validador', 'validadorAsincrono')
+    
     this.miPrimerGrupoFormulario = new FormGroup
     ({
-
+      
       'nombreCompleto': new FormGroup
       ({
+        // parametros FormControl('valorCampo', 'validador: Sincrono', 'validador: Asincrono')
         'nombre': new FormControl( '', [Validators.required, Validators.minLength(3) ]),
-        'apellido': new FormControl( '', Validators.required ),
+        'apellido': new FormControl( '', [Validators.required, miValidador.apellidoBloqueado] ),
       }),
 
       'correo': new FormControl
@@ -79,13 +94,14 @@ export class DataComponent implements OnInit
     console.log("Propiedades del formulario: ");
     console.log(this.miPrimerGrupoFormulario);
 
-    this.miPrimerGrupoFormulario.reset({
-      nombreCompleto: {
-        nombre: '',
-        apellido: ''
-      },
-      correo: ''
-    });
+    // this.miPrimerGrupoFormulario.reset({
+    //   nombreCompleto: {
+    //     nombre: '',
+    //     apellido: ''
+    //   },
+    //   correo: ''
+    // });
+    
   } // end guardarCambios
 
 

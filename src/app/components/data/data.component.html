@@ -6,8 +6,8 @@ Autor: Stephen Arzeta
 Fecha: 09/01/2020
 Hora: 7:52 a.m.
 
-Ultima modificación: 09/01/2020 07:52 am
-Descripción: Agregar este encabezado al archivo
+Ultima modificación: 11/01/2020 05:50 pm
+Descripción: Validar dos campos (contraseña) y valida que sean iguales
 
 -->
 <h4>Formularios <small>logica datos (TS)</small></h4>
@@ -44,8 +44,7 @@ Descripción: Agregar este encabezado al archivo
 
     <div class="form-group row">
         <label class="col-2 col-form-label">Correo</label>
-        <div class="col-md-8">
-
+        <div class="col-8">
             <input class="form-control" type="email" placeholder="Correo electrónico" formControlName="correo">
         </div>
     </div>
@@ -60,6 +59,21 @@ Descripción: Agregar este encabezado al archivo
         <button type="button" class="btn btn-success" (click)="agregarPasatiempo()">
             Nuevo
         </button>
+
+    </div>
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Contraseña</label>
+        <div class="col-8">
+            <input class="form-control" type="password" placeholder="Introduce contraseña" formControlName="primeraContrasena">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label" for="">Confirmar contaseña</label>
+        <div class="col-8">
+            <input type="password" class="form-control" placeholder="Confirmar contraseña" formControlName="segundaContrasena">
+        </div>
 
     </div>
 

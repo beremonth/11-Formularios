@@ -4,15 +4,15 @@
 // Fecha: 09/01/2020
 // Hora: 8:05 a.m.
 
-// Ultima modificación: 09/01/2020 08:05 am
-// Descripción: Agregar este encabezado al archivo
+// Ultima modificación: 11/01/2020 05:50 pm
+// Descripción: Validar dos campos (contraseña) y valida que sean iguales
 
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormControl } from '@angular/forms';
 import { FormArray } from '@angular/forms';
 import { Validators } from '@angular/forms';
-import { MiValidadorPersonalizado } from '../validators/miValidadorPersonalizado.validators';
+// import { MiValidadorPersonalizado } from '../validators/miValidadorPersonalizado.validators';
 
 
 @Component({
@@ -36,7 +36,7 @@ export class DataComponent implements OnInit
     // pasatiempo: ['dormir', 'comer', 'leer']
   };
 
-  constructor( miValidador: MiValidadorPersonalizado )
+  constructor(  )
   {
     // creacion de instancia de clase FormGroup
     
@@ -47,7 +47,7 @@ export class DataComponent implements OnInit
       ({
         // parametros FormControl('valorCampo', 'validador: Sincrono', 'validador: Asincrono')
         'nombre': new FormControl( '', [Validators.required, Validators.minLength(3) ]),
-        'apellido': new FormControl( '', [Validators.required, miValidador.apellidoBloqueado] ),
+        'apellido': new FormControl( '', [Validators.required, this.apellidoBloqueado] ),
       }),
 
       'correo': new FormControl
@@ -60,13 +60,22 @@ export class DataComponent implements OnInit
         ('dormir',
           Validators.required
         )
-      ])
-      
+      ]),
+      'primeraContrasena': new FormControl
+      ('',
+        [Validators.required]
+      ),
+      'segundaContrasena': new FormControl
+      ()
     });
 
     // enlaza del objetoJS con formulario FormGroup ( miPrimerGrupoFormulario )
     // this.miPrimerGrupoFormulario.setValue( this.objetoFuenteDatos );
-
+    
+    this.miPrimerGrupoFormulario.controls['segundaContrasena'].setValidators([
+      Validators.required,
+      this.contrasenaDiferente.bind( this.miPrimerGrupoFormulario )
+    ])
   }// end constructor
 
   ngOnInit()
@@ -78,13 +87,43 @@ export class DataComponent implements OnInit
 
   agregarPasatiempo()
   { 
-    (<FormArray>this.miPrimerGrupoFormulario.controls['pasatiempo']).push(
+    (<FormArray>this.miPrimerGrupoFormulario.controls['pasatiempo']).push
+    (
       new FormControl
         ('',
           Validators.required
         )
     )
   } // end agregarPasatiempo
+
+  apellidoBloqueado( input: FormControl ): { [respuesta: string]: boolean }
+  {
+
+     if ( input.value === "herrera")
+     {
+        return { errorApellido: true };
+     } // se activa error, en consola
+
+     else ( input.value !== "herrera" )
+     {
+        return  null;
+     } // no se activa error
+
+  } // end method bloquearApellido
+
+  contrasenaDiferente( segundaContrasena: FormControl ): { [respuesta: string]: boolean }
+  // contrasenaDiferente( primeraContrasena: FormControl ): any
+  {
+    let miPrimerGrupoFormulario: any = this;
+    if( segundaContrasena.value !== miPrimerGrupoFormulario.controls['primeraContrasena'].value )
+    {
+      return { constrasenaDiferente: true };
+    }
+    else
+    {
+      return null;
+    }
+  } // end contrasenaDiferente
 
   guardarCambios()
   { 
@@ -104,6 +143,7 @@ export class DataComponent implements OnInit
     
   } // end guardarCambios
 
+ 
 
 
-}
+} // end class DataComponent

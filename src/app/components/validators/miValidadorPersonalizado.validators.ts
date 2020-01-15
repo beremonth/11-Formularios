@@ -13,6 +13,8 @@ Descripción: Refactorización: mejora redacción de código
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms'; // Clase principal de controles de formulario
 import { FormControl } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
+import { promise } from 'protractor';
+import { Observable } from 'rxjs';
 
 export const contrasenaDiferente = (miPrimerGrupoFormulario: AbstractControl): {[respuesta: string]: boolean} =>
 {
@@ -48,5 +50,29 @@ export class MiValidadorPersonalizado
       } // no se activa error
 
    } // end method bloquearApellido
+
+   errorUsuario( nombreUsuario: FormControl ): Promise<any> | Observable<any>
+   {
+      console.log('Nombre usuario recibido: ');
+      console.log(nombreUsuario.value);
+      let respuesta = new Promise
+      (
+         (resolve, reject) =>
+         {
+            setTimeout(() =>
+            {
+               if (nombreUsuario.value === "strider")
+               {
+                  resolve({ usuarioOcupado: true })
+               }
+               else
+               {
+                  resolve(null)
+               }
+            }, 300);
+         }
+      )
+      return respuesta;
+   } // end usuarioOcupado
 
 } // end class MiValidadorPersonalizado

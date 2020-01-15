@@ -47,6 +47,13 @@ Descripción: Agregar este encabezado al archivo
         </div>
 
     </div>
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Usuario</label>
+        <div class="col-8">
+            <input class="form-control" type="text" placeholder="Nombre de usuario" formControlName="nombreUsuario">
+
+        </div>
+    </div>
 
     <div class="form-group row">
         <label class="col-2 col-form-label">Correo</label>
@@ -106,6 +113,7 @@ Descripción: Agregar este encabezado al archivo
         </div>
     </div>
 
-    {{ miPrimerGrupoFormulario.valid }}
+    Validación: {{ miPrimerGrupoFormulario.valid }}
+    <br> Estatus: {{ miPrimerGrupoFormulario.status }}
 
 </form>

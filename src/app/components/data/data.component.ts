@@ -57,6 +57,11 @@ export class DataComponent implements OnInit
         [Validators.required,
         Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]
       ),
+      'nombreUsuario': new FormControl
+      ('',
+        Validators.required,
+        miValidador.errorUsuario
+      ),
 
       'contrasenas': miFormBuilder.group
       ({

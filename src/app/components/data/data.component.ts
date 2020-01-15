@@ -8,11 +8,13 @@
 // Descripción: Agregar este encabezado al archivo
 
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { FormControl } from '@angular/forms';
 import { FormArray } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { MiValidadorPersonalizado } from '../validators/miValidadorPersonalizado.validators';
+import { contrasenaDiferente } from '../validators/miValidadorPersonalizado.validators';
 
 
 @Component({
@@ -36,11 +38,11 @@ export class DataComponent implements OnInit
     // pasatiempo: ['dormir', 'comer', 'leer']
   };
 
-  constructor( miValidador: MiValidadorPersonalizado )
+  constructor( miFormBuilder: FormBuilder, miValidador: MiValidadorPersonalizado)
   {
     // creacion de instancia de clase FormGroup
     
-    this.miPrimerGrupoFormulario = new FormGroup
+    this.miPrimerGrupoFormulario = miFormBuilder.group
     ({
       
       'nombreCompleto': new FormGroup
@@ -55,12 +57,22 @@ export class DataComponent implements OnInit
         [Validators.required,
         Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]
       ),
+
+      'contrasenas': miFormBuilder.group
+      ({
+        'primeraContrasena': new FormControl ( '', Validators.required ),
+        'segundaContrasena': new FormControl ('', [Validators.required ])
+      }, { validator: contrasenaDiferente }),
+      
       'pasatiempo': new FormArray([
         new FormControl
         ('dormir',
           Validators.required
         )
       ])
+
+
+      
       
     });
 
@@ -70,7 +82,7 @@ export class DataComponent implements OnInit
   }// end constructor
 
   ngOnInit()
-  {
+  {  
 
     console.log('Contenido objetoJS');
     console.log( this.objetoFuenteDatos );

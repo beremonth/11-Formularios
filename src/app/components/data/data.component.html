@@ -21,7 +21,7 @@ Descripción: Agregar este encabezado al archivo
             <label class="col-2 col-form-label">Nombre</label>
             <div class="col-8">
 
-                <input class="form-control" type="text" placeholder="Nombre" formControlName="nombre" [ngClass]=" {'is-invalid': miPrimerGrupoFormulario.get( 'nombreCompleto.nombre' ).touched && miPrimerGrupoFormulario.get( 'nombreCompleto.nombre' ).invalid} ">
+                <input class="form-control" type="text" placeholder="Nombre" formControlName="nombre" [ngClass]=" {'is-invalid': miPrimerGrupoFormulario.get( 'nombreCompleto.nombre' ).touched && miPrimerGrupoFormulario.get( 'nombreCompleto.nombre' ).invalid }">
                 <div class="invalid-feedback" *ngIf="miPrimerGrupoFormulario.get( 'nombreCompleto.nombre' ).errors?.required">
 
                     El nombre es requerido
@@ -36,7 +36,13 @@ Descripción: Agregar este encabezado al archivo
             <label class="col-2 col-form-label">Apellido</label>
             <div class="col-8">
 
-                <input class="form-control" type="text" placeholder="Apellido" formControlName="apellido">
+                <input class="form-control" type="text" placeholder="Apellido" formControlName="apellido" [ngClass]=" {'is-invalid': miPrimerGrupoFormulario.get( 'nombreCompleto.apellido' ).touched && miPrimerGrupoFormulario.get( 'nombreCompleto.apellido' ).invalid }">
+                <div class="invalid-feedback" *ngIf="miPrimerGrupoFormulario.get( 'nombreCompleto.apellido' ).errors?.required">
+                    El apellido es requerido
+                </div>
+                <div class="invalid-feedback" *ngIf="miPrimerGrupoFormulario.get( 'nombreCompleto.apellido' ).errors?.errorApellido">
+                    El apellido bloqueado
+                </div>
             </div>
         </div>
 
@@ -45,18 +51,43 @@ Descripción: Agregar este encabezado al archivo
     <div class="form-group row">
         <label class="col-2 col-form-label">Correo</label>
         <div class="col-md-8">
-
-            <input class="form-control" type="email" placeholder="Correo electrónico" formControlName="correo">
+            <input class="form-control" type="email" placeholder="Correo electrónico" formControlName="correo" [ngClass]=" {'is-invalid': miPrimerGrupoFormulario.get( 'correo' ).touched && miPrimerGrupoFormulario.get( 'correo' ).invalid }">
+            <div class="invalid-feedback" *ngIf="miPrimerGrupoFormulario.get( 'correo' ).errors?.required">
+                El correo es requerido
+            </div>
+            <div class="invalid-feedback" *ngIf="miPrimerGrupoFormulario.get( 'correo' ).errors?.pattern">
+                Correo no valido, ejemplo: correo@ejemplo.algo
+            </div>
         </div>
     </div>
+
+    <div formGroupName="contrasenas">
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Contraseña</label>
+            <div class="col-md-8">
+                <input type="password" class="form-control" placeholder="Ingresar contraseña" formControlName="primeraContrasena">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Confirmar contraseña</label>
+            <div class="col-md-8">
+                <input type="password" class="form-control" placeholder="Repetir contraseña" formControlName="segundaContrasena" [ngClass]=" {'is-invalid': miPrimerGrupoFormulario.get( 'contrasenas' ).touched && miPrimerGrupoFormulario.get( 'contrasenas' ).invalid }">
+                <div class="invalid-feedback" *ngIf="miPrimerGrupoFormulario.get( 'contrasenas' ).errors?.contrasenasDistintas">
+                    Las contraseñas deben ser iguales
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- formGroupName -->
+
 
     <div class="form-group row">
         <label class="col-2 col-form-label">Pasa tiempos</label>
         <div class="col-8" formArrayName="pasatiempo">
             <input type="text" class="form-control" [formControlName]="i" *ngFor=" let pasatiempo of miPrimerGrupoFormulario.controls['pasatiempo'].controls; let i=index">
-
-
         </div>
+
         <button type="button" class="btn btn-success" (click)="agregarPasatiempo()">
             Nuevo
         </button>

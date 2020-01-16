@@ -6,8 +6,8 @@ Autor: Stephen Arzeta
 Fecha: 08/01/2020
 Hora: 08:08 a.m.
 
-Ultima modificación: 09/01/2020 07:49 am
-Descripción: Refactorización: mejora redacción de código
+Ultima modificación: 15/01/2020 08:13 pm
+// Descripción: Agregar le método errorUsuario para un usuario ocupado
 
 */
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms'; // Clase principal de controles de formulario

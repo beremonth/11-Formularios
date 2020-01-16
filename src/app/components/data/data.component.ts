@@ -4,8 +4,8 @@
 // Fecha: 09/01/2020
 // Hora: 8:05 a.m.
 
-// Ultima modificación: 09/01/2020 08:05 am
-// Descripción: Agregar este encabezado al archivo
+// Ultima modificación: 15/01/2020 08:09 pm
+// Descripción: Agregar el campo validador asyncrono para usuario
 
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';

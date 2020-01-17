@@ -4,8 +4,8 @@
 // Fecha: 09/01/2020
 // Hora: 8:05 a.m.
 
-// Ultima modificación: 15/01/2020 08:09 pm
-// Descripción: Agregar el campo validador asyncrono para usuario
+// Ultima modificación: 17/01/2020 08:09 pm
+// Descripción: Escuchar los cambios de un campo en el formulario
 
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
@@ -74,16 +74,17 @@ export class DataComponent implements OnInit
         ('dormir',
           Validators.required
         )
-      ])
-
-
-      
-      
+      ]) 
     });
 
     // enlaza del objetoJS con formulario FormGroup ( miPrimerGrupoFormulario )
     // this.miPrimerGrupoFormulario.setValue( this.objetoFuenteDatos );
 
+    this.miPrimerGrupoFormulario.controls['nombreUsuario'].valueChanges
+    .subscribe( data => 
+    {
+      console.log( data );
+    });
   }// end constructor
 
   ngOnInit()

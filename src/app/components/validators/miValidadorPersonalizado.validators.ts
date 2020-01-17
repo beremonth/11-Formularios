@@ -53,8 +53,8 @@ export class MiValidadorPersonalizado
 
    errorUsuario( nombreUsuario: FormControl ): Promise<any> | Observable<any>
    {
-      console.log('Nombre usuario recibido: ');
-      console.log(nombreUsuario.value);
+      // console.log('Nombre usuario recibido: ');
+      // console.log(nombreUsuario.value);
       let respuesta = new Promise
       (
          (resolve, reject) =>

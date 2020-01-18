@@ -112,13 +112,13 @@ export class DataComponent implements OnInit
     console.log("Propiedades del formulario: ");
     console.log(this.miPrimerGrupoFormulario);
 
-    // this.miPrimerGrupoFormulario.reset({
-    //   nombreCompleto: {
-    //     nombre: '',
-    //     apellido: ''
-    //   },
-    //   correo: ''
-    // });
+    this.miPrimerGrupoFormulario.reset({
+      nombreCompleto: {
+        nombre: '',
+        apellido: ''
+      },
+      correo: ''
+    });
     
   } // end guardarCambios
 

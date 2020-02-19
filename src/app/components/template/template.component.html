@@ -8,7 +8,7 @@
             <label class="col-2 col-form-label">Nombre</label>
             <div class="col-8">
 
-                <input [ngClass]="{ 'is-invalid':(nombre.touched && (nombre.errors?.minlength || nombre.errors?.required)) }" class="form-control" type="text" placeholder="Nombre" name="nombre" minlength="3" [(ngModel)]='usuario.nombre' #nombre="ngModel" required>
+                <input [ngClass]="{ 'is-invalid':(nombre.touched && (nombre.errors?.minlength || nombre.errors?.required)) }" class="form-control" type="text" placeholder="Nombre" name="nombre" minlength="3" [(ngModel)]='usuario["nombre"]' #nombre="ngModel" required>
 
                 <div *ngIf="nombre.touched && (nombre.errors?.required || nombre.errors?.minlength)" class="invalid-feedback">
 
@@ -26,7 +26,7 @@
         <div class="form-group row">
             <label class="col-2 col-form-label">Apellido</label>
             <div class="col-8">
-                <input [ngClass]="{ 'is-invalid':  (apellido.touched && apellido.errors?.required) }" class="form-control" type="text" name="apellido" placeholder="Apellido" [(ngModel)]='usuario.apellido' #apellido="ngModel" required>
+                <input [ngClass]="{ 'is-invalid':  (apellido.touched && apellido.errors?.required) }" class="form-control" type="text" name="apellido" placeholder="Apellido" [(ngModel)]='usuario["apellido"]' #apellido="ngModel" required>
 
                 <div *ngIf="apellido.invalid && (apellido.touched || apellido.dirty)" class="invalid-feedback">
 
@@ -42,7 +42,7 @@
     <div class="form-group row">
         <label class="col-2 col-form-label">Correo</label>
         <div class="col-md-8">
-            <input [ngClass]="{ 'is-invalid': correo.touched && (correo.errors?.pattern || correo.errors?.required ) }" class="form-control" type="email" name="correo" placeholder="Correo electrónico" [(ngModel)]="usuario.correo" #correo="ngModel" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+            <input [ngClass]="{ 'is-invalid': correo.touched && (correo.errors?.pattern || correo.errors?.required ) }" class="form-control" type="email" name="correo" placeholder="Correo electrónico" [(ngModel)]='usuario["correo"]' #correo="ngModel" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
 
             <div *ngIf="correo.invalid && (correo.touched || correo.dirty)" class="invalid-feedback">
                 <div *ngIf="correo.errors?.required">
@@ -58,7 +58,7 @@
     <div class="form-group row">
         <label class="col-2 col-form-label">País</label>
         <div class="col-md-8">
-            <select class="form-control" name="pais" [(ngModel)]="usuario.pais">
+            <select class="form-control" name="pais" [(ngModel)]="usuario['pais']">
                 <option value="" [selected]="true" [disabled] = "true">Seleccione un país </option>
                 <option *ngFor="let pais of arregloPais " [value]="pais.codigo"> {{pais.nombre}} </option>
             </select>
@@ -69,7 +69,7 @@
         <label class="col-2 col-form-label">Sexo</label>
         <div class="col-md-8">
             <div class="form-check form-check-inline" *ngFor="let sex of sexos">
-                <input class="form-check-input" type="radio" [value]="sex" name="sexo" [(ngModel)]="usuario.sexo">
+                <input class="form-check-input" type="radio" [value]="sex" name="sexo" [(ngModel)]='usuario["sexo"]'>
                 <label class="form-check-label" for="Hombre">{{sex}}</label>
             </div>
         </div>
@@ -79,7 +79,7 @@
         <label class="col-2 col-form-label">&nbsp;</label>
         <div class="input-group col-md-8">
             <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="customCheck1" [(ngModel)]="usuario.acepta" name="acepta" required>
+                <input type="checkbox" class="custom-control-input" id="customCheck1" [(ngModel)]='usuario["acepta"]' name="acepta" required>
                 <label class="custom-control-label" for="customCheck1">Aceptar terminos y condiciones</label>
             </div>
         </div>

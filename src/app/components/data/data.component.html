@@ -92,7 +92,7 @@ Descripción: Campo usuario para registrar un usuario nuevo
     <div class="form-group row">
         <label class="col-2 col-form-label">Pasa tiempos</label>
         <div class="col-8" formArrayName="pasatiempo">
-            <input type="text" class="form-control" [formControlName]="i" *ngFor=" let pasatiempo of miPrimerGrupoFormulario.controls['pasatiempo'].controls; let i=index">
+            <input type="text" class="form-control" [formControlName]="i" *ngFor=" let pasatiempo of miPrimerGrupoFormulario['controls'].pasatiempo['controls']; let i=index">
         </div>
 
         <button type="button" class="btn btn-success" (click)="agregarPasatiempo()">
